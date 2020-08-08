@@ -4,7 +4,7 @@
  * Created on: Dec 12, 2016
  * Author: Tiffany Huang
  * 
- * Updated: August 8th 2020 
+ * Updated on: August 8th 2020 
  * Author: Kevin Smyth 
  */
 
@@ -68,7 +68,7 @@ void ParticleFilter::prediction(double delta_t, double std_pos[],
    
    // Calculate new particle positions
    for (int i=0; i < num_particles; ++i){
-       // Shorthand variables to make equations easier to read
+       // Variables to make equations easier to read
        x_old = particles[i].x;
        y_old = particles[i].y;
        theta_old = particles[i].theta;
