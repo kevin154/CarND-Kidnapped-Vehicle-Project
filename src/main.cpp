@@ -26,6 +26,7 @@ string hasData(string s) {
 }
 
 int main() {
+  
   uWS::Hub h;
 
   // Set up parameters here
@@ -46,8 +47,8 @@ int main() {
 
   // Create particle filter
   ParticleFilter pf;
-
-  h.onMessage([&pf,&map,&delta_t,&sensor_range,&sigma_pos,&sigma_landmark]
+  
+  h.onMessage([&pf, &map, &delta_t, &sensor_range, &sigma_pos, &sigma_landmark]
               (uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, 
                uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
@@ -100,7 +101,7 @@ int main() {
           std::istream_iterator<float>(),
           std::back_inserter(y_sense));
 
-          for (int i = 0; i < x_sense.size(); ++i) {
+          for (unsigned int i = 0; i < x_sense.size(); ++i) {
             LandmarkObs obs;
             obs.x = x_sense[i];
             obs.y = y_sense[i];
@@ -123,7 +124,6 @@ int main() {
               highest_weight = particles[i].weight;
               best_particle = particles[i];
             }
-
             weight_sum += particles[i].weight;
           }
 
@@ -169,6 +169,5 @@ int main() {
     std::cerr << "Failed to listen to port" << std::endl;
     return -1;
   }
-  
   h.run();
 }
